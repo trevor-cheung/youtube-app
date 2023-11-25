@@ -1,11 +1,11 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 import taipy as tp
+import makequestions
 
 from taipy import Config
 
 def build_message(input: str):
-    message = YouTubeTranscriptApi.get_transcript(input.split("=")[-1], languages=['ko'])
-    string = ''
+    message = makequestions.linkToQs(input)
     for i in message:
         print(i['text'])
         string += i['text'] + " "
