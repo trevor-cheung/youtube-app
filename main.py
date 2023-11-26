@@ -12,7 +12,7 @@ qnum_data_node_cfg = Config.configure_data_node(id="qnum")
 
 page = """
 <|container|
-# **Language**{: .color-secondary} Learning
+# **linquiztics**{: .color-secondary}
 <br/>
 
 <|layout|columns=1 1 1|gap=30px|class_name=card|
@@ -20,7 +20,7 @@ page = """
 <link|
 ## **Video**{: .color-primary} Link
 
-<|{input_name}|input|label=link|>
+<|{input_name}|input|label=Paste link here first!|>
 <|submit|button|on_action=submit_scenario|>
 |link>
 
@@ -32,17 +32,20 @@ page = """
 |language>
 
 <difficulty|
-## difficulty
+## Difficulty
 
 <|{difficulty}|selector|lov={[("easy", "Easy"), ("medium", "Medium"), ("hard", "Hard")]}|dropdown=True|>
 |difficulty>
 |>
 
 <|layout|columns=1|gap=30px|class_name=card|
-Question: <|{message}|text|>
+### Question: 
+<|{message}|text|>
+<|speech|icon|on_action=speak|>
 <br/>
 <br/>
-Your Answer: <|{answer}|input|class_name=fullwidth|multiline|>
+### Your Answer: 
+<|{answer}|input|class_name=fullwidth|multiline|>
 <br/>
 <|submit|button|on_action=submit_answer|>
 

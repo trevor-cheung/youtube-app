@@ -1,0 +1,5 @@
+taipy
+youtube-transcript-api
+openai
+gtts
+playsound
