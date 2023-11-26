@@ -41,7 +41,6 @@ page = """
 <|layout|columns=1|gap=30px|class_name=card|
 ### Question: 
 <|{message}|text|>
-<|speech|icon|on_action=speak|>
 <br/>
 <br/>
 ### Your Answer: 
