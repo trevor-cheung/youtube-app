@@ -1,14 +1,13 @@
-from youtube_transcript_api import YouTubeTranscriptApi
 import taipy as tp
 import makequestions
 
 from taipy import Config
 
 def build_message(input: str):
-    message = makequestions.linkToQs(input)
-    for i in message:
-        print(i['text'])
-        string += i['text'] + " "
+    string = ''
+    q, a = makequestions.linkToQs(input)
+    for i in q:
+        string += i + "\n"
     return string
 
 input_name_data_node_cfg = Config.configure_data_node(id="input_name")

@@ -1,18 +1,18 @@
 {
-"id": "DATANODE_message_7c2570a7-7117-426c-b9cf-e3d37b7d610c",
+"id": "DATANODE_message_5a4d8f98-9e72-4c03-8ace-b4722f45918c",
 "config_id": "message",
 "scope": "<Scope.SCENARIO: 1>",
 "storage_type": "pickle",
 "name": null,
-"owner_id": "SCENARIO_scenario_1d91a303-45e6-4689-89a8-384a0e17b80e",
+"owner_id": "SCENARIO_scenario_7c8940ac-b884-4684-b368-1158d50b4079",
 "parent_ids": [
-"TASK_build_msg_7e00e9dd-a590-406b-ae6b-e7a308e9527f"
+"TASK_build_msg_cc064e9c-b03e-4d31-ab9d-bd29f14b5bf4"
 ],
-"last_edit_date": "2023-11-25T17:37:26.081458",
+"last_edit_date": "2023-11-25T19:13:09.104533",
 "edits": [
 {
-"job_id": "JOB_build_msg_d63fcb99-8218-4bde-b700-f3550dc45ca1",
-"timestamp": "2023-11-25T17:37:26.081458"
+"job_id": "JOB_build_msg_27d20e31-4b99-493d-bb13-416aad1b9221",
+"timestamp": "2023-11-25T19:13:09.104533"
 }
 ],
 "version": "fd950273-182d-4168-abcf-b202056bc729",
