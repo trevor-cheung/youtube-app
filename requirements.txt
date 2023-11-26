@@ -1,5 +1,7 @@
-taipy
+taipy~=3.0.0
 youtube-transcript-api
-openai
+openai~=1.3.5
 gtts
 playsound
+sounddevice~=0.4.6
+requests~=2.31.0

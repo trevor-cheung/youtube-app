@@ -13,7 +13,7 @@ qnum_data_node_cfg = Config.configure_data_node(id="qnum")
 
 page = """
 <|container|
-# **linquiztics**{: .color-secondary}
+# **linquiztics**{: .color-primary}
 <br/>
 
 <|layout|columns=1 1 1|gap=30px|class_name=card|
@@ -46,6 +46,7 @@ page = """
 <|{message}|text|>
 <br/>
 <|Play Text|button|on_action=play_speech|>
+<|Record Voice|button|on_action=record_mic|>
 <br/>
 <br/>
 ### Your Answer: 
@@ -90,7 +91,6 @@ stylekit = {
 
 def submit_scenario(state):
     state.qnum = 0
-    print(state.language[1])
     state.questions_array, state.answers_array = makequestions.linkToQs(state.input_name, state.language[1])
     state.message = state.questions_array[0]
 
@@ -117,8 +117,12 @@ def change_text(state):
     
 def play_speech(state):
     state.message = state.questions_array[state.qnum]
-    print(state.language[0])
     textToSpeech.playSpeech(state.message, state.language[0])
+
+
+
+def record_mic(state):
+    state.answer = textToSpeech.recordSpeech(6)
 
 
 if __name__ == "__main__":
