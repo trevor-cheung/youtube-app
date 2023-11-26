@@ -91,6 +91,8 @@ stylekit = {
 
 def submit_scenario(state):
     state.qnum = 0
+    state.answer = ""
+    state.feedback = ""
     state.questions_array, state.answers_array = makequestions.linkToQs(state.input_name, state.language[1])
     state.message = state.questions_array[0]
 
