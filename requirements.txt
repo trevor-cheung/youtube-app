@@ -4,4 +4,5 @@ openai
 gtts
 playsound
 sounddevice
+requests
 scipy
