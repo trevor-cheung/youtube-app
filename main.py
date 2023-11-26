@@ -28,7 +28,7 @@ page = """
 <language|
 ## **Language**{: .color-primary}
 
-<|{language}|selector|lov={[("id1", "English"), ("id2", "Spanish"), ("id3", "Korean")]}|dropdown=True|>
+<|{language}|selector|lov={[("en", "English"), ("sp", "Spanish"), ("ko", "Korean")]}|dropdown=True|>
 |language>
 
 <difficulty|
@@ -44,7 +44,9 @@ page = """
 <br/>
 <br/>
 ### Your Answer: 
-<|{answer}|input|class_name=fullwidth|multiline|>
+<|{answer}|input|class_name=fullwidth|>
+<br/>
+<|{feedback}|text|>
 <br/>
 <|submit|button|on_action=submit_answer|>
 
@@ -61,9 +63,10 @@ button {text-align: center;}
 
 input_name = None
 message = None
-language = None
+language = 'en'
 difficulty = None
 answer = None
+feedback = None
 
 questions_array = []
 answers_array = []
@@ -73,15 +76,20 @@ qnum = 0
 
 def submit_scenario(state):
     state.qnum = 0
-    state.questions_array, state.answers_array = makequestions.linkToQs(state.input_name)
+    state.questions_array, state.answers_array = makequestions.linkToQs(state.input_name, state.language[1])
     state.message = state.questions_array[0]
 
 def submit_answer(state):
-    print(state.answer)
-    if state.answer == state.answers_array[state.qnum] or state.answer+"\n" == state.answers_array[state.qnum]:
-        state.message = "Correct!"
-    else:
-        state.message = "Incorrect. \n The correct answer is: "+state.answers_array[state.qnum]
+    evaluation, feedback = makequestions.confidence(state.answer, state.answers_array[state.qnum])
+    evaluation = int(evaluation)
+    print(evaluation)
+    print(feedback)
+    if evaluation == 0:
+        state.feedback = "Incorrect.\n"+feedback
+    elif evaluation == 1:
+        state.feedback = "Mostly correct.\n"+feedback
+    elif evaluation == 2:
+        state.feedback = "Correct!\n"+feedback
     
 def change_text(state):
     state.qnum += 1
@@ -90,6 +98,7 @@ def change_text(state):
         return
     state.message = state.questions_array[state.qnum]
     state.answer = ""
+    state.feedback = ""
 
 if __name__ == "__main__":
     tp.Core().run()
