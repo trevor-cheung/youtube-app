@@ -19,7 +19,7 @@ scenario_cfg = Config.configure_scenario("scenario", task_configs=[build_msg_tas
 page = """
 Name: <|{input_name}|input|>
 <|submit|button|on_action=submit_scenario|>
-Message: <|{message}|text|>
+Questions: <|{message}|text|>
 """
 
 input_name = "Taipy"
