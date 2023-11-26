@@ -69,7 +69,7 @@ button {text-align: center;}
 
 input_name = None
 message = None
-language = 'en'
+language = ("en", "English")
 difficulty = None
 answer = None
 feedback = None
@@ -90,6 +90,7 @@ stylekit = {
 
 def submit_scenario(state):
     state.qnum = 0
+    print(state.language[1])
     state.questions_array, state.answers_array = makequestions.linkToQs(state.input_name, state.language[1])
     state.message = state.questions_array[0]
 
@@ -116,6 +117,7 @@ def change_text(state):
     
 def play_speech(state):
     state.message = state.questions_array[state.qnum]
+    print(state.language[0])
     textToSpeech.playSpeech(state.message, state.language[0])
 
 
