@@ -31,7 +31,7 @@ def recordSpeech(time):
     fs = 44100  # Sample rate
     seconds = time  # Duration of recording
 
-    myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+    myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
     print("Recording...")
     sd.wait()  # Wait until recording is finished
     write('speech.wav', fs, myrecording)  # Save as WAV file
