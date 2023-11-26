@@ -38,6 +38,8 @@ page = """
 |difficulty>
 |>
 
+<br\> 
+
 <|layout|columns=1|gap=30px|class_name=card|
 ### Question: 
 <|{message}|text|>
