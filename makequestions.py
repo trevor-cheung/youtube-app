@@ -1,6 +1,6 @@
 import json
 import requests
-import config
+import config.config as config
 import re
 from youtube_transcript_api import YouTubeTranscriptApi
 
