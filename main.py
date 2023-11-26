@@ -3,36 +3,94 @@ import makequestions
 
 from taipy import Config
 
-def build_message(input: str):
-    string = ''
-    q, a = makequestions.linkToQs(input)
-    for i in q:
-        string += i + "\n"
-    return string
-
 input_name_data_node_cfg = Config.configure_data_node(id="input_name")
 message_data_node_cfg = Config.configure_data_node(id="message")
-build_msg_task_cfg = Config.configure_task("build_msg", build_message, input_name_data_node_cfg, message_data_node_cfg)
-scenario_cfg = Config.configure_scenario("scenario", task_configs=[build_msg_task_cfg])
+questions_array_data_node_cfg = Config.configure_data_node(id="questions_array")
+answers_array_data_node_cfg = Config.configure_data_node(id="answers_array")
+qnum_data_node_cfg = Config.configure_data_node(id="qnum")
 
 
 page = """
-Name: <|{input_name}|input|>
+<|container|
+# **Language**{: .color-secondary} Learning
+<br/>
+
+<|layout|columns=1 1 1|gap=30px|class_name=card|
+
+<link|
+## **Video**{: .color-primary} Link
+
+<|{input_name}|input|label=link|>
 <|submit|button|on_action=submit_scenario|>
-Questions: <|{message}|text|>
+|link>
+
+
+<language|
+## **Language**{: .color-primary}
+
+<|{language}|selector|lov={[("id1", "English"), ("id2", "Spanish"), ("id3", "Korean")]}|dropdown=True|>
+|language>
+
+<difficulty|
+## difficulty
+
+<|{difficulty}|selector|lov={[("easy", "Easy"), ("medium", "Medium"), ("hard", "Hard")]}|dropdown=True|>
+|difficulty>
+|>
+
+<|layout|columns=1|gap=30px|class_name=card|
+Question: <|{message}|text|>
+<br/>
+<br/>
+Your Answer: <|{answer}|input|class_name=fullwidth|multiline|>
+<br/>
+<|submit|button|on_action=submit_answer|>
+
+<br/>
+<|next|button|on_action=change_text|>
+|>
+
+|>
+
+<style>
+button {text-align: center;}
+</style>
 """
 
-input_name = "Taipy"
+input_name = None
 message = None
+language = None
+difficulty = None
+answer = None
+
+questions_array = []
+answers_array = []
+
+qnum = 0
+
 
 def submit_scenario(state):
-    state.scenario.input_name.write(state.input_name)
-    state.scenario.submit(wait=True)
-    state.message = scenario.message.read()
+    state.qnum = 0
+    state.questions_array, state.answers_array = makequestions.linkToQs(state.input_name)
+    state.message = state.questions_array[0]
+
+def submit_answer(state):
+    print(state.answer)
+    if state.answer == state.answers_array[state.qnum] or state.answer+"\n" == state.answers_array[state.qnum]:
+        state.message = "Correct!"
+    else:
+        state.message = "Incorrect. \n The correct answer is: "+state.answers_array[state.qnum]
+    
+def change_text(state):
+    state.qnum += 1
+    if state.qnum >= len(state.questions_array):
+        state.message = "No more questions!"
+        return
+    state.message = state.questions_array[state.qnum]
+    state.answer = ""
 
 if __name__ == "__main__":
     tp.Core().run()
-    scenario = tp.create_scenario(scenario_cfg)
     tp.Gui(page).run()
 
 
