@@ -1,5 +1,6 @@
 import taipy as tp
 import makequestions
+import textToSpeech
 
 from taipy import Config
 
@@ -43,6 +44,8 @@ page = """
 <|layout|columns=1|gap=30px|class_name=card|
 ### Question: 
 <|{message}|text|>
+<br/>
+<|Play Text|button|on_action=play_speech|>
 <br/>
 <br/>
 ### Your Answer: 
@@ -110,6 +113,11 @@ def change_text(state):
     state.message = state.questions_array[state.qnum]
     state.answer = ""
     state.feedback = ""
+    
+def play_speech(state):
+    state.message = state.questions_array[state.qnum]
+    textToSpeech.playSpeech(state.message, state.language[0])
+
 
 if __name__ == "__main__":
     tp.Core().run()
