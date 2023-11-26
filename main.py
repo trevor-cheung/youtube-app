@@ -38,6 +38,8 @@ page = """
 |difficulty>
 |>
 
+<br\> 
+
 <|layout|columns=1|gap=30px|class_name=card|
 ### Question: 
 <|{message}|text|>
@@ -73,6 +75,14 @@ answers_array = []
 
 qnum = 0
 
+stylekit = {
+    # "color_primary": "#5C4230",
+    # "color_secondary": "#8F2D24",
+    # "color_background_light": "#7A6B62",
+    # "color_background_dark": "#15130F",
+    # "color_paper_light": "#F6F7F4",
+    # "color_paper_dark": "#ABBFA9",
+}
 
 def submit_scenario(state):
     state.qnum = 0
@@ -102,7 +112,7 @@ def change_text(state):
 
 if __name__ == "__main__":
     tp.Core().run()
-    tp.Gui(page).run()
+    tp.Gui(page).run(stylekit=stylekit)
 
 
 
