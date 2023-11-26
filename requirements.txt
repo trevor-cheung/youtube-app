@@ -3,3 +3,5 @@ youtube-transcript-api
 openai
 gtts
 playsound
+sounddevice
+scipy
