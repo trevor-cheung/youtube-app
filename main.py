@@ -38,7 +38,7 @@ page = """
 |difficulty>
 |>
 
-<br\> 
+<br/> 
 
 <|layout|columns=1|gap=30px|class_name=card|
 ### Question: 
@@ -49,6 +49,7 @@ page = """
 <|{answer}|input|class_name=fullwidth|>
 <br/>
 <|{feedback}|text|>
+<br/>
 <br/>
 <|submit|button|on_action=submit_answer|>
 
