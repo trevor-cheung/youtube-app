@@ -4,3 +4,4 @@ Helps you to learn a language by quizzing you on YouTube videos in different lan
 ```
 pip install requirements.txt
 ```
+https://devpost.com/software/linquiztics
